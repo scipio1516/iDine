@@ -22,7 +22,7 @@ struct OrderView: View {
                 }
             }
             Section {
-                NavigationLink(destination: Text("Check Out! Does not work currently.")) {
+                NavigationLink(destination: CheckoutView()) {
                     Text("Place Order")
                 }
             }
