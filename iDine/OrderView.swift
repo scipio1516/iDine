@@ -10,12 +10,31 @@ import SwiftUI
 struct OrderView: View {
     @EnvironmentObject var order: Order
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            Section {
+                ForEach(order.items) { item in
+                    HStack {
+                        Text(item.name)
+                        Spacer()
+                        Text("$\(item.price).00")
+                    }
+                }
+            }
+            Section {
+                NavigationLink(destination: Text("Check Out! Does not work currently.")) {
+                    Text("Place Order")
+                }
+            }
+            .navigationTitle("Order")
+            .listStyle(.insetGrouped)
+        }
     }
 }
 
 struct OrderView_Previews: PreviewProvider {
     static var previews: some View {
+        NavigationView {
         OrderView().environmentObject(Order())
+        }
     }
 }
