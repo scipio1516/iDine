@@ -13,10 +13,21 @@ struct CheckoutView: View {
     @State private var addLoyaltyDetails = false
     @State private var loyaltyNumber = ""
     @State private var tip = 10
+    var totalPrice: String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+
+        let total = Double(order.total)
+        let tipValue = total / 100 * Double(tip)
+
+        return formatter.string(from: NSNumber(value: total + tipValue)) ?? "$0"
+    }
     
     var body: some View {
         let paymentTypes = ["Cash", "Credit", "Debit", "iDine Points"]
         let tipAmounts = [10, 15, 20, 25, 0]
+        
+        
         
         Form {
             Section {
@@ -40,7 +51,7 @@ struct CheckoutView: View {
                 }.pickerStyle(SegmentedPickerStyle())
             }
             
-            Section(header: Text("Total price: $420")) {
+            Section(header: Text("Total price: \(totalPrice)")) {
                 Button("Check Out!") {
                     
                 }
