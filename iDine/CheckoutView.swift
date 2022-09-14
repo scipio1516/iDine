@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+
+
 struct CheckoutView: View {
     @EnvironmentObject var order: Order
     @State private var paymentType = "Cash"
@@ -14,6 +16,8 @@ struct CheckoutView: View {
     @State private var loyaltyNumber = ""
     @State private var tip = 10
     @State private var showingPaymentAlert = false
+    
+    
     var totalPrice: String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
@@ -52,7 +56,7 @@ struct CheckoutView: View {
                 }.pickerStyle(SegmentedPickerStyle())
             }
             
-            Section(header: Text("Total price: \(totalPrice)")) {
+            Section(header: Text("Total price: \(totalPrice)").font(.largeTitle)) {
                 Button("Check Out!") {
                     showingPaymentAlert.toggle()
                 }
